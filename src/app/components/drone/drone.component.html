@@ -1,0 +1,35 @@
+<div class="drone-container">
+    <h2>Gestion des Drones</h2>
+  
+    <button class="add-btn" (click)="openAddForm()">Ajouter un Drone</button>
+  
+    <div class="drone-list">
+      <div *ngFor="let drone of drones" class="drone-card">
+        <h3>{{ drone.modele }}</h3>
+        <p><strong>ID :</strong> {{ drone.droneId }}</p>
+        <p><strong>Poids :</strong> {{ drone.poids }} kg</p>
+        <p><strong>Portée :</strong> {{ drone.porteeMax }} m</p>
+        <button class="delete-btn" (click)="deleteDrone(drone.idDrone)">Supprimer</button>
+      </div>
+    </div>
+  
+    <div *ngIf="showAddForm" class="form-container">
+      <h3>Ajouter un Drone</h3>
+      <form #droneForm="ngForm" (ngSubmit)="onAddNewDrone(droneForm)">
+        <label>Modèle :</label>
+        <input type="text" name="modele" ngModel required>
+  
+        <label>Poids (kg) :</label>
+        <input type="number" name="poids" ngModel required>
+  
+        <label>Portée max (m) :</label>
+        <input type="number" name="porteeMax" ngModel required>
+  
+        <label>Capacité Batterie :</label>
+        <input type="number" name="capaciteBatterie" ngModel required>
+  
+        <button type="submit" class="submit-btn">Ajouter</button>
+        <button type="button" class="cancel-btn" (click)="closeAddForm()">Annuler</button>
+      </form>
+    </div>
+  </div>

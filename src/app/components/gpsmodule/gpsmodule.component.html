@@ -1,0 +1,32 @@
+<div class="gps-container">
+  <h2>Module GPS</h2>
+
+  <button class="add-btn" (click)="openAddForm()">Ajouter un GPS Module</button>
+
+  <div class="gps-list">
+    <div *ngFor="let gps of gpsModules" class="gps-card">
+      <h3>Coordonnées :</h3>
+      <p><strong>Latitude :</strong> {{ gps.latitude }}</p>
+      <p><strong>Longitude :</strong> {{ gps.longitude }}</p>
+      <p><strong>Altitude :</strong> {{ gps.altitude }} m</p>
+      <button class="delete-btn" (click)="deleteGPSModule(gps.idGPS)">Supprimer</button>
+    </div>
+  </div>
+
+  <div *ngIf="showAddForm" class="form-container">
+    <h3>Ajouter un Module GPS</h3>
+    <form #gpsForm="ngForm" (ngSubmit)="onAddNewGPSModule(gpsForm)">
+      <label>Latitude :</label>
+      <input type="number" step="0.0001" name="latitude" ngModel required>
+
+      <label>Longitude :</label>
+      <input type="number" step="0.0001" name="longitude" ngModel required>
+
+      <label>Altitude :</label>
+      <input type="number" name="altitude" ngModel required>
+
+      <button type="submit" class="submit-btn">Ajouter</button>
+      <button type="button" class="cancel-btn" (click)="closeAddForm()">Annuler</button>
+    </form>
+  </div>
+</div>

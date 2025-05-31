@@ -1,0 +1,27 @@
+<div class="camera-container">
+    <h2>Gestion des Caméras</h2>
+  
+    <button class="add-btn" (click)="openAddForm()">Ajouter une Caméra</button>
+  
+    <div class="camera-list">
+      <div *ngFor="let camera of cameras" class="camera-card">
+        <h3>Résolution : {{ camera.resolution }}</h3>
+        <p><strong>Zoom :</strong> x{{ camera.zoom }}</p>
+        <button class="delete-btn" (click)="deleteCamera(camera.idCamera)">Supprimer</button>
+      </div>
+    </div>
+  
+    <div *ngIf="showAddForm" class="form-container">
+      <h3>Ajouter une Caméra</h3>
+      <form #cameraForm="ngForm" (ngSubmit)="onAddNewCamera(cameraForm)">
+        <label>Résolution :</label>
+        <input type="text" name="resolution" ngModel required>
+  
+        <label>Zoom :</label>
+        <input type="number" name="zoom" ngModel required>
+  
+        <button type="submit" class="submit-btn">Ajouter</button>
+        <button type="button" class="cancel-btn" (click)="closeAddForm()">Annuler</button>
+      </form>
+    </div>
+  </div>

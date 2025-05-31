@@ -1,0 +1,34 @@
+<div class="flight-container">
+    <h2>Contrôle du Vol</h2>
+  
+    <button class="add-btn" (click)="openAddForm()">Ajouter un Flight Controller</button>
+  
+    <div class="flight-list">
+      <div *ngFor="let flight of flightControllers" class="flight-card">
+        <h3>Altitude cible : {{ flight.altitudeCible }}m</h3>
+        <p><strong>Vitesse actuelle :</strong> {{ flight.vitesseActuelle }} km/h</p>
+        <p><strong>Position cible :</strong> ({{ flight.latitudeCible }}, {{ flight.longitudeCible }})</p>
+        <button class="delete-btn" (click)="deleteFlightController(flight.idFlightController)">Supprimer</button>
+      </div>
+    </div>
+  
+    <div *ngIf="showAddForm" class="form-container">
+      <h3>Ajouter un Flight Controller</h3>
+      <form #flightForm="ngForm" (ngSubmit)="onAddNewFlightController(flightForm)">
+        <label>Vitesse actuelle :</label>
+        <input type="number" name="vitesseActuelle" ngModel required>
+  
+        <label>Altitude cible :</label>
+        <input type="number" name="altitudeCible" ngModel required>
+  
+        <label>Latitude cible :</label>
+        <input type="number" name="latitudeCible" ngModel required>
+  
+        <label>Longitude cible :</label>
+        <input type="number" name="longitudeCible" ngModel required>
+  
+        <button type="submit" class="submit-btn">Ajouter</button>
+        <button type="button" class="cancel-btn" (click)="closeAddForm()">Annuler</button>
+      </form>
+    </div>
+  </div>
